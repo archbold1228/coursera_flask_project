@@ -1,45 +1,154 @@
-import requests
+# Emotion Detector Web Application
 
+## 📌 Project Overview
 
-def emotion_detector(text_to_analyze):
-    """
-    Analyze emotions in the provided text using Watson NLP
-    and return formatted emotion scores with dominant emotion.
-    """
+This project implements an **AI-based Emotion Detection Web Application** using the IBM Watson NLP library. The application analyzes user-provided text and identifies the dominant emotion along with confidence scores for multiple emotions.
 
-    url = "https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict"
+The system is deployed as a web application using Flask and includes testing, error handling, and static code analysis.
 
-    headers = {
-        "grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"
-    }
+---
 
-    input_json = {
-        "raw_document": {
-            "text": text_to_analyze
-        }
-    }
+## 🚀 Features
 
-    response = requests.post(url, json=input_json, headers=headers)
-    formatted_response = response.json()
+* Detects emotions from text input
+* Returns scores for:
 
-    emotions = formatted_response["emotionPredictions"][0]["emotion"]
+  * Anger 😠
+  * Disgust 🤢
+  * Fear 😨
+  * Joy 😊
+  * Sadness 😢
+* Identifies the dominant emotion
+* REST API using Flask
+* Unit tested for reliability
+* Error handling for invalid input
+* Static code analysis compliant
 
-    anger = emotions["anger"]
-    disgust = emotions["disgust"]
-    fear = emotions["fear"]
-    joy = emotions["joy"]
-    sadness = emotions["sadness"]
+---
 
-    emotion_scores = {
-        "anger": anger,
-        "disgust": disgust,
-        "fear": fear,
-        "joy": joy,
-        "sadness": sadness
-    }
+## 🧠 Technologies Used
 
-    dominant_emotion = max(emotion_scores, key=emotion_scores.get)
+* Python 3.x
+* IBM Watson NLP Library
+* Flask (Web Framework)
+* unittest (Testing)
+* pylint (Static Code Analysis)
 
-    emotion_scores["dominant_emotion"] = dominant_emotion
+---
 
-    return emotion_scores
+## 📂 Project Structure
+
+```
+EmotionDetection/
+│
+├── EmotionDetection/
+│   ├── __init__.py
+│   └── emotion_detection.py
+│
+├── test_emotion_detection.py
+├── server.py
+├── README.md
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/emotion-detector.git
+cd emotion-detector
+```
+
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## ▶️ Running the Application
+
+Start the Flask server:
+
+```bash
+python server.py
+```
+
+Open your browser and navigate to:
+
+```
+http://localhost:5000
+```
+
+---
+
+## 🧪 Running Unit Tests
+
+```bash
+python -m unittest test_emotion_detection.py
+```
+
+---
+
+## 📊 Example Output
+
+Input:
+
+```
+"I am very happy today!"
+```
+
+Output:
+
+```json
+{
+  "anger": 0.01,
+  "disgust": 0.02,
+  "fear": 0.01,
+  "joy": 0.94,
+  "sadness": 0.02,
+  "dominant_emotion": "joy"
+}
+```
+
+---
+
+## ⚠️ Error Handling
+
+* Handles empty input
+* Handles API errors (e.g., status code 400)
+* Returns meaningful error messages
+
+---
+
+## 🧹 Static Code Analysis
+
+Run pylint:
+
+```bash
+pylint server.py
+```
+
+Expected: **10/10 score**
+
+---
+
+## 📷 Screenshots
+
+Screenshots for deployment and error handling are included as part of the project submission.
+
+---
+
+## 📌 Author
+
+* Your Name
+
+---
+
+## 📄 License
+
+This project is for educational purposes as part of an IBM AI Engineering course.
+
