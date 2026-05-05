@@ -3,37 +3,37 @@ Flask server for the Emotion Detector application.
 """
 
 from flask import Flask, render_template, request
-from EmotionDetection import emotion_detector
+from EmotionDetection.emotion_detection import emotion_detector
 
 
 app = Flask(__name__)
 
 
 @app.route("/")
-def index():
-    """
-    Render the main application page.
-    """
-    return render_template("index.html")
+def render_index():
+    """Render the main application page."""
+    return render_template('index.html')
 
 
 @app.route("/emotionDetector")
-def emotion_detector_route():
-    """
-    Analyze user-provided text and return formatted emotion results.
-    """
-    text_to_analyze = request.args.get("textToAnalyze")
+def sent_analyzer():
+    """Analyze user-provided text and return formatted emotion results."""
+    text_to_analyze = request.args.get('textToAnalyze')
 
     response = emotion_detector(text_to_analyze)
 
+    anger = response['anger']
+    disgust = response['disgust']
+    fear = response['fear']
+    joy = response['joy']
+    sadness = response['sadness']
+    dominant_emotion = response['dominant_emotion']
+
     return (
-        "For the given statement, the system response is "
-        f"'anger': {response['anger']}, "
-        f"'disgust': {response['disgust']}, "
-        f"'fear': {response['fear']}, "
-        f"'joy': {response['joy']} and "
-        f"'sadness': {response['sadness']}. "
-        f"The dominant emotion is {response['dominant_emotion']}."
+        f"For the given statement, the system response is "
+        f"'anger': {anger}, 'disgust': {disgust}, 'fear': {fear}, "
+        f"'joy': {joy} and 'sadness': {sadness}. "
+        f"The dominant emotion is {dominant_emotion}."
     )
 
 
