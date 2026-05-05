@@ -1,8 +1,8 @@
-# Emotion Detector Web Application
+# Final Project: Emotion Detector Web Application
 
 ## 📌 Project Overview
 
-This project implements an **AI-based Emotion Detection Web Application** using the IBM Watson NLP library. The application analyzes user-provided text and identifies the dominant emotion along with confidence scores for multiple emotions.
+This is the **Final Project** submission. It implements an **AI-based Emotion Detection Web Application** using the IBM Watson NLP library. The application analyzes user-provided text and identifies the dominant emotion along with confidence scores for multiple emotions.
 
 The system is deployed as a web application using Flask and includes testing, error handling, and static code analysis.
 
